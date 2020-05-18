@@ -124,14 +124,13 @@ export function export_table_to_excel(id) {
 function formatJson(jsonData) {
     console.log(jsonData)
 }
-export function export_json_to_excel(th, jsonData, defaultTitle, options = { merges: [], header: null }) {
+export function export_json_to_excel(th, jsonData, defaultTitle, options = { merges: [], header: null },ws_name="xiaobu") {
 
     /* original data */
 
     var data = jsonData;
     data.unshift(th);
     if (options.header) data.unshift([options.header]);
-    var ws_name = "CareyShop";
 
     var wb = new Workbook(), ws = sheet_from_array_of_arrays(data);
 

@@ -44,7 +44,7 @@ const vueTableExport = {
       const header = _params.columns.map(e => e.label);
       const data = _params.data.map(row => _params.columns.map(col => row[col.prop]));
       // 导出
-      Excel.export_json_to_excel(header, data, _params.title, {merges: _params.merges, header: _params.header});
+      Excel.export_json_to_excel(header, data, _params.title, {merges: _params.merges, header: _params.header}, _params.ws_name);
 
       // 完成
       resolve()
