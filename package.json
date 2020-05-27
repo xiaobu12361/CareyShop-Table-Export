@@ -13,12 +13,12 @@
     "package.json"
   ],
   "bugs": {
-    "url": "https://github.com/xiaobu12361/CareyShop-Table-Export/issues"
+    "url": "https://github.com/xiaobu12361/Table-Export/issues"
   },
-  "homepage": "https://github.com/xiaobu12361/CareyShop-Table-Export#readme",
+  "homepage": "https://github.com/xiaobu12361/Table-Export#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xiaobu12361/CareyShop-Table-Export"
+    "url": "https://github.com/xiaobu12361/Table-Export"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
