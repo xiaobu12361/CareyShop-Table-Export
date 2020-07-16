@@ -54,6 +54,7 @@ const vueTableExport = {
           })
         })
       } catch (e) {
+        console.error(e)
         return false
       }
       // 导出
