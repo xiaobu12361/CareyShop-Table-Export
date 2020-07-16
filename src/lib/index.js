@@ -44,15 +44,23 @@ const vueTableExport = {
       const header = _params.columns.map(e => e.label);
       const data = _params.data.map(row => _params.columns.map(col => row[col.prop]));
       // 处理特殊总计数据
-      data.forEach(function (v,k) {
-        v.forEach(function (vv,kk) {
-          if(vv === undefined){
-            data[k] = _params.data[k]
-          }
+      try {
+        data.forEach(function (v, k) {
+          v.forEach(function (vv, kk) {
+            if (vv === undefined) {
+              throw new Error(_params.columns[kk].prop + '不存在')// 跳出循环
+              data[k] = _params.data[k]
+            }
+          })
         })
-      })
+      } catch (e) {
+        return false
+      }
       // 导出
-      Excel.export_json_to_excel(header, data, _params.title, {merges: _params.merges, header: _params.header}, _params.ws_name);
+      Excel.export_json_to_excel(header, data, _params.title, {
+        merges: _params.merges,
+        header: _params.header
+      }, _params.ws_name);
 
       // 完成
       resolve()
