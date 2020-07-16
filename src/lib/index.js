@@ -42,21 +42,25 @@ const vueTableExport = {
       const _params = Object.assign({}, paramsDefault, params);
       // 从参数中派生数据
       const header = _params.columns.map(e => e.label);
-      const data = _params.data.map(row => _params.columns.map(col => row[col.prop]));
-      // 处理特殊总计数据
       try {
-        data.forEach(function (v, k) {
-          v.forEach(function (vv, kk) {
-            if (vv === undefined) {
-              throw new Error(_params.columns[kk].prop + '不存在')// 跳出循环
-              data[k] = _params.data[k]
-            }
-          })
+        _params.columns.forEach(function (val, key) {
+          if (_params.data[0][val.prop] === undefined) {
+            throw new Error(val.prop + '不存在')// 跳出循环
+          }
         })
       } catch (e) {
         console.error(e)
         return false
       }
+      const data = _params.data.map(row => _params.columns.map(col => row[col.prop]));
+      // 处理特殊总计数据
+      data.forEach(function (v, k) {
+        v.forEach(function (vv, kk) {
+          if (vv === undefined) {
+            data[k] = _params.data[k]
+          }
+        })
+      })
       // 导出
       Excel.export_json_to_excel(header, data, _params.title, {
         merges: _params.merges,
